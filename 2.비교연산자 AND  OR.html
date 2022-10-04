@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비교 연산자 AND OR의 이해</title>
+</head>
+<body>
+    <input type="text" class="sum">
+    <button class="start">등급계산</button>
+    <div class="grade">본인의등급은?</div>
+    <script>
+        let yourGrade = "";
+        document.querySelector(".start").addEventListener("click",function(){
+            // 버튼을 클릭하는 순간 input 태그에 입력한 값을 가지고 오자
+            let result = document.querySelector(".sum").value;
+            
+            if(result <= 100 && result > 90){
+                yourGrade = "a등급";
+                document.querySelector(".grade").innerHTML = yourGrade + "입니다.";
+            }
+            else if(result <= 90 && result > 80){
+                yourGrade = "b등급";
+                document.querySelector(".grade").innerHTML = yourGrade + "입니다.";
+            }
+            else if(result <= 80 && result > 70){
+                yourGrade = "c등급";
+                document.querySelector(".grade").innerHTML = yourGrade + "입니다.";
+            }
+            else if(result <= 70 && result > 60){
+                yourGrade = "d등급";
+                document.querySelector(".grade").innerHTML =yourGrade + "입니다.";
+            }
+            else{
+                document.querySelector(".grade").innerHTML = "재시험입니다.";
+            } 
+        });
+
+        let a = 30;
+        let b = 40;
+        let c = 60;
+        let d = 20;
+
+        let sum = 58;
+
+        // if(sum <= 100 && sum >= 80){
+        //     alert("등급은 수입니다.");
+        // }
+        // else if(sum <= 79 && sum >=60){
+        //     alert("등급은 우입니다.");
+        // }
+        // else if(sum <= 59 && sum >= 40){
+        //     alert("등급은 미입니다.");
+        // }
+        // else{
+        //     alert("너는 재시험!")
+        // }
+        // && AND 연산자(그리고)
+        // 앞에꺼 비교가 참이고  뒤에꺼도 참일 때 -> 참
+        // 하나만 거짓이 되도 최종 비교 결과는 -> 거짓 
+        // 전부 거짓이 되도 -> 거짓
+
+        // || OR 연산자(또는)
+        // 하나만 참이어도 -> 참
+        // 전부 거짓이 됬을 때 -> 거짓
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문을 이용한 기능구현 예시</title>
+    <style>
+        * { margin:0; padding:0;}
+        ul,ol,li {list-style: none;}
+        a {text-decoration: none;}
+        img {vertical-align: middle;}
+
+        #header {position: fixed; z-index: 99; left: 0; top: 0; width: 100%; background-color: pink; display: flex; justify-content: center;}
+        #header .center {width: 1200px; display: flex; justify-content: space-between; align-items: center;}
+
+        #header .logo img {width: 150px;}
+
+        #header .gnb {display: flex;}
+        #header .gnb li {margin:  0 15px; line-height: 100px;}
+        #header .gnb li a {color: #000; transition: all 0.5s;}
+
+        #header .more {display: block; width: 150px; height: 50px; border-radius: 10px;
+                       background-color: orange; color: #fff; text-align: center; line-height: 50px;}
+        #container {background-color: aqua; height: 3000px;}
+        .cont1 {padding-top: 95px;}
+        .slider {width: 100%; position: relative; overflow: hidden;}
+        .slider .view {width: 400%; display: flex; margin-left: 0%; transition: all 0.5s;}
+        .slider .view .smove {width: 25%; height: 400px;}
+        .slider .view .s1 {background-color: red;}
+        .slider .view .s2 {background-color: blue;}
+        .slider .view .s3 {background-color: green;}
+        .slider .view .s4 {background-color: yellow;}
+
+        .slider .btnSet div {position: absolute; top: 50%; transform: translateY(-50%);
+                             width: 50px; height: 50px; background-color: #fff;}
+        .slider .btnSet .left_btn {left:20px;}
+        .slider .btnSet .right_btn {right:20px;}
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="center">
+            <h1 class="logo"><a href="#"><img src="img/logo.png"></a></h1>
+            <ul class="gnb">
+                <li><a href="#">메뉴1</a></li>
+                <li><a href="#">메뉴2</a></li>
+                <li><a href="#">메뉴3</a></li>
+                <li><a href="#">메뉴4</a></li>
+            </ul>
+            <a class="more">VIEW MORE</a>
+        </div>
+    </div>
+    <div id="container">
+        <div class="cont1">
+            <div class="slider">
+                <div class="view">
+                    <div class="s1 smove">슬라이드화면1</div>
+                    <div class="s2 smove">슬라이드화면2</div>
+                    <div class="s3 smove">슬라이드화면3</div>
+                    <div class="s4 smove">슬라이드화면4</div>
+                </div>
+                <div class="btnSet">
+                    <div class="left_btn">이전</div>
+                    <div class="right_btn">이후</div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    <script>
+    //    스크롤바 움직이는 이벤트 기능!
+        let header = document.querySelector("#header");
+        let moreBtn = document.querySelector(".more");
+        let logImg = document.querySelector(".logo img");
+        let gnbMenu = document.querySelectorAll(".gnb > li > a");    
+
+        window.addEventListener("scroll",function(){
+            // 스크롤바 위치값좀 가지고 와봐!
+            let scTop = window.scrollY;
+            
+            // 스크롤바의 위치가 0보다 컷을때
+            if(scTop > 0){
+                header.style.backgroundColor = "skyblue";
+                moreBtn.style.backgroundColor = "red";
+                moreBtn.style.color = "yellow";
+                // 이미지태그의 속성값 변경하는 방법
+                logImg.setAttribute("src","img/logo_chg.png");
+                for(let i = 0; i < gnbMenu.length; i++){
+                    gnbMenu[i].style.color = "#fff";
+                    gnbMenu[i].style.fontSize = "20px";
+                }
+            }
+            else{
+                // 0이랑 같았을떄
+                header.style.backgroundColor = "pink";
+                moreBtn.style.backgroundColor = "orange";
+                moreBtn.style.color = "#fff";
+                logImg.setAttribute("src","img/logo.png");
+                for(let i = 0; i < gnbMenu.length; i++){
+                    gnbMenu[i].style.color = "#000";
+                    gnbMenu[i].style.fontSize = "16px";
+                }
+            }
+        });
+    //  이후 버튼을 눌렀을때
+        let sNumber = 0; // 0 첫번째 1 두번째 2 세번째 3 네번
+        
+        document.querySelector(".right_btn").addEventListener("click",function(){
+            if(sNumber == 3){
+                sNumber = 0;
+            }
+            else{
+                sNumber = sNumber + 1;
+            }
+            document.querySelector(".view").style.marginLeft = -100 * sNumber + '%';
+        });
+    // 이전 버튼을 눌렀을때
+
+        document.querySelector(".left_btn").addEventListener("click",function(){
+            if(sNumber == 0){
+                sNumber = 3;
+            }
+            else{
+                sNumber = sNumber - 1;
+            }
+            document.querySelector(".view").style.marginLeft = -100 * sNumber + '%';
+        });
+    </script>
+</body>
+</html>

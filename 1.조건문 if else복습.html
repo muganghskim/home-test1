@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문 복습</title>
+</head>
+<body>
+    <input type="text" class="sum" name="sum">
+    <button class="start">점수계산</button>
+
+    <script>
+        //input 태그에 텍스트를 입력받아 해당 데이터를 가지고 조건문으로 처리!
+        document.querySelector(".start").addEventListener("click",function(){
+        
+            let test1 = document.querySelector(".sum").value;
+
+            if(test1 === "오렌지"){
+                document.querySelector("body").style.backgroundColor = "orange";
+            }
+            else{
+                document.querySelector("body").style.backgroundColor = "#fff";
+            }       
+        });
+    </script>
+</body>
+</html>

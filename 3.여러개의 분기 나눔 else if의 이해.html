@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>else if의 이해</title>
+    <style>
+        * { margin:0; padding:0;}
+    </style>
+</head>
+<body>
+    <!-- 입력한내용이 특정동물명과 일치했을때 -->
+    <input type="text" class="animal">
+    <button class="start">어떤 반려동물을 키우시나요?</button>
+
+    <script>
+        //변수 세팅
+        let inAnimal = '';
+
+        document.querySelector(".start").addEventListener("click",function(){
+            
+            inAnimal = document.querySelector(".animal").value;
+            
+            if(inAnimal === "고양이" || inAnimal === "강아지" || inAnimal === "수달"){
+                alert(inAnimal + "를 키우고 있습니다.");
+            }
+            else {
+                alert(inAnimal + "는(은) 저희가 취급하지 않습니다.");
+            }
+        });
+    </script>
+</body>
+</html>

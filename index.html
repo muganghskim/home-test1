@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>26일차 실습</title>
+    <style>
+        * {margin: 0; padding: 0;}
+        a {text-decoration: none;}
+        img {vertical-align: middle;}
+        ul,ol,li {list-style: none;}
+        body {line-height: 1;}
+
+        #header {background-color: #fff; position: fixed; left: 0; top: 0; width: 100%; z-index: 99;}
+        #header .center {width: 1170px; margin: 0 auto; align-items: center; display: flex; justify-content: space-between;}
+        
+        .gnb {display: flex;}
+        .gnb > li {line-height: 95px; margin-right: 50px; position: relative;}
+        .gnb li a {font-size: 16px; color: #000;}
+
+        #header .gnb li .sub {position: absolute;left: 50%; transform: translateX(-50%); background-color: skyblue;
+                              width: 150px; text-align: center; display: none;}
+        #header .gnb li .sub li{line-height: 50px;} 
+
+        .btn {display: block; width: 180px; height: 50px;
+              background-color: #ff5a5f; color: #fff; 
+              text-align: center; line-height: 50px; 
+              border-radius: 25px;}
+
+        .cont1 {height: 3000px; padding-top: 95px;}
+
+        .slider {width: 100%; position: relative; overflow: hidden;}
+        .slider .view {width: 500%; display: flex; margin-left: 0%; transition: all 0.5s;}
+        .slider .view .smove {width: 20%; height: 600px;}
+        .slider .view .smove img {width: 100%;}
+
+        .slider .btnSet div {position: absolute; top: 50%; transform: translateY(-50%);
+                             width: 50px; height: 50px; background-color: #fff;}
+        .slider .btnSet .left_btn {left:20px;}
+        .slider .btnSet .right_btn {right:20px;}
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="center">
+            <h1 class="logo"><img src="img/sitelogo.jpg"></h1>
+            <ul class="gnb">
+                <li>
+                    <a href="#">Home</a>
+                    <ul class="sub">
+                        <li><a href="#">sub1-1</a></li>
+                        <li><a href="#">sub1-2</a></li>
+                        <li><a href="#">sub1-3</a></li>
+                        <li><a href="#">sub1-4</a></li>
+                    </ul>
+                </li> 
+                <li>
+                    <a href="#">Listing</a>
+                    <ul class="sub">
+                        <li><a href="#">sub2-1</a></li>
+                        <li><a href="#">sub2-2</a></li>
+                        <li><a href="#">sub2-3</a></li>
+                    </ul>
+                </li> 
+                <li>
+                    <a href="#">Property</a>
+                    <ul class="sub">
+                        <li><a href="#">sub3-1</a></li>
+                        <li><a href="#">sub3-2</a></li>
+                        <li><a href="#">sub3-3</a></li>
+                        <li><a href="#">sub3-4</a></li>
+                        <li><a href="#">sub3-5</a></li>
+                        <li><a href="#">sub3-6</a></li>
+                        <li><a href="#">sub3-7</a></li>
+                    </ul>
+                </li> 
+                <li>
+                    <a href="#">Pages</a>
+                    <ul class="sub">
+                        <li><a href="#">sub4-1</a></li>
+                        <li><a href="#">sub4-2</a></li>
+                        <li><a href="#">sub4-3</a></li>
+                        <li><a href="#">sub4-4</a></li>
+                        <li><a href="#">sub4-5</a></li>
+                    </ul>
+                </li> 
+                <li><a href="#">Blog</a></li> 
+                <li><a href="#">Contact</a></li> 
+            </ul>
+            <a class="btn" href="#">Create Listing</a>
+        </div>
+    </div>
+    <div id="container">
+        <div class="cont1">
+            <div class="slider">
+                <div class="view">
+                    <div class="smove"><img src="img/main1.jpg"></div>
+                    <div class="smove"><img src="img/main2.jpg"></div>
+                    <div class="smove"><img src="img/main3.jpg"></div>
+                    <div class="smove"><img src="img/main4.jpg"></div>
+                    <div class="smove"><img src="img/main5.jpg"></div>
+                </div>
+                <div class="btnSet">
+                    <div class="left_btn"><img src="img/left_bt.png"></div>
+                    <div class="right_btn"><img src="img/right_bt.png"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //    스크롤바 움직이는 이벤트 기능!
+            window.addEventListener("scroll",function(){
+                // 스크롤바 위치값좀 가지고 와봐!
+                let scTop = window.scrollY;
+                
+                // 스크롤바의 위치가 0보다 컷을때
+                if(scTop > 0){
+                    document.querySelector("#header").style.backgroundColor = "skyblue";
+                    document.querySelector(".btn").style.backgroundColor = "orange";
+                    document.querySelector(".btn").style.color = "#000";
+                    // 이미지태그의 속성값 변경하는 방법
+                }
+                else{
+                    // 0이랑 같았을떄
+                    document.querySelector("#header").style.backgroundColor = "#fff";
+                    document.querySelector(".btn").style.backgroundColor = "#ff5a5f";
+                    document.querySelector(".btn").style.color = "#fff";
+                }
+            });
+        //  이후 버튼을 눌렀을때
+            let sNumber = 0; // 0 첫번째 1 두번째 2 세번째 3 네번
+            
+            document.querySelector(".right_btn").addEventListener("click",function(){
+                if(sNumber == 4){
+                    sNumber = 0;
+                }
+                else{
+                    sNumber = sNumber + 1;
+                }
+                document.querySelector(".view").style.marginLeft = -100 * sNumber + '%';
+            });
+        // 이전 버튼을 눌렀을때
+    
+            document.querySelector(".left_btn").addEventListener("click",function(){
+                if(sNumber == 0){
+                    sNumber = 4;
+                }
+                else{
+                    sNumber = sNumber - 1;
+                }
+                document.querySelector(".view").style.marginLeft = -100 * sNumber + '%';
+            });
+
+            let depth1 = document.querySelectorAll(".gnb > li");
+        // 반복문을 이용해서 li태그들한테 이벤트를 각각 달아줌
+        for(let i = 0; i < 4; i++){
+            // 마우스 올렸을때
+            depth1[i].addEventListener("mouseenter",function(){
+                depth1[i].querySelector(".sub").style.display = "block";
+            });
+            // 마우스 내렸을때
+            depth1[i].addEventListener("mouseleave",function(){
+                depth1[i].querySelector(".sub").style.display = "none";
+            });
+        }
+        </script>
+
+</body>
+</html>
